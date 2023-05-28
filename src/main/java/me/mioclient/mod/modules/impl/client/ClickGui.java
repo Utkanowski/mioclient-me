@@ -149,15 +149,16 @@ public class ClickGui extends Module {
     @Override
     public void onUpdate() {
         if (guiMove.getValue()&& !(mc.currentScreen instanceof GuiChat)) {
-
             for (KeyBinding key : keys) {
+                if(key.getKeyCode() < 0) continue;
+                
                 KeyBinding.setKeyBindState(key.getKeyCode(), Keyboard.isKeyDown(key.getKeyCode()));
             }
 
-        } else {
-            
+        } else { 
             for (KeyBinding key : keys) {
-
+                if(key.getKeyCode() < 0) continue;
+                
                 if (!Keyboard.isKeyDown(key.getKeyCode())) {
                     KeyBinding.setKeyBindState(key.getKeyCode(), false);
                 }
